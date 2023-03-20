@@ -1,0 +1,1 @@
+<?php //sinlance is golden
