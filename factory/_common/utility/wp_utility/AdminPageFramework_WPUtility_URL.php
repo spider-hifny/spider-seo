@@ -19,13 +19,13 @@ class SpiderSEOAdminPageFramework_WPUtility_URL extends SpiderSEOAdminPageFramew
     public static function getCurrentAdminURL()
     {
         $sRequestURI = $GLOBALS[ 'is_IIS' ] ? $_SERVER[ 'PATH_INFO' ] : $_SERVER[ "REQUEST_URI" ];
-        $sPageURL = 'on' == @$_SERVER[ "HTTPS" ] ? "https://" : "http://";
+        $sPageURL = is_ssl() ? "https://" : "http://";
         if ("80" != $_SERVER[ "SERVER_PORT" ]) {
             $sPageURL .= $_SERVER[ "SERVER_NAME" ] . ":" . $_SERVER[ "SERVER_PORT" ] . $sRequestURI;
         } else {
             $sPageURL .= $_SERVER[ "SERVER_NAME" ] . $sRequestURI;
         }
-        return $sPageURL;
+        return esc_url_raw($sPageURL);
     }
     public static function getQueryAdminURL($aAddingQueries=array(), $aRemovingQueryKeys=array(), $sSubjectURL='')
     {

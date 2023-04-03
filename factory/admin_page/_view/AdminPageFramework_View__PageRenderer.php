@@ -1,5 +1,6 @@
 <?php
-class SpiderSEOAdminPageFramework_View__PageRenderer extends SpiderSEOAdminPageFramework_FrameworkUtility {
+class SpiderSEOAdminPageFramework_View__PageRenderer extends SpiderSEOAdminPageFramework_FrameworkUtility
+{
     public $oFactory;
     public $sPageSlug;
     public $sTabSlug;
@@ -15,23 +16,23 @@ class SpiderSEOAdminPageFramework_View__PageRenderer extends SpiderSEOAdminPageF
     {
         $_sPageSlug = $this->sPageSlug;
         $_sTabSlug = $this->sTabSlug;
-        $this->addAndDoActions($this->oFactory, $this->getFilterArrayByPrefix('do_before_', $this->oFactory->oProp->sClassName, $_sPageSlug, $_sTabSlug, true), $this->oFactory); ?>
+        $this->addAndDoActions($this->oFactory, $this->getFilterArrayByPrefix('do_before_', $this->oFactory->oProp->sClassName, $_sPageSlug, $_sTabSlug, true), $this->oFactory);?>
         <div class="spider-header">
             <a href="//spiderseo.co">
-                <img src="<?=plugins_url( 'spider-seo/assets/image/colored-logo.png')?>" class="logo">
+                <img src="<?=plugins_url('spider-seo/assets/image/colored-logo.png',__FILE__)?>" class="logo">
             </a>
         </div>
         <div class="<?php echo esc_attr($this->oFactory->oProp->sWrapperClassAttribute); ?>">
             <?php echo $this->_getContentTop(); ?>
             <div class="spider-seo-container">
                 <?php
- $this->addAndDoActions($this->oFactory, $this->getFilterArrayByPrefix('do_form_', $this->oFactory->oProp->sClassName, $_sPageSlug, $_sTabSlug, true), $this->oFactory);
-        $this->_printFormOpeningTag($this->oFactory->oProp->bEnableForm); ?>
+$this->addAndDoActions($this->oFactory, $this->getFilterArrayByPrefix('do_form_', $this->oFactory->oProp->sClassName, $_sPageSlug, $_sTabSlug, true), $this->oFactory);
+        $this->_printFormOpeningTag($this->oFactory->oProp->bEnableForm);?>
                 <div id="poststuff">
                     <div id="post-body" class="metabox-holder columns-<?php echo $this->_getNumberOfColumns(); ?>">
                     <?php
- $this->_printMainPageContent($_sPageSlug, $_sTabSlug);
-        $this->_printPageMetaBoxes(); ?>
+$this->_printMainPageContent($_sPageSlug, $_sTabSlug);
+        $this->_printPageMetaBoxes();?>
                     </div><!-- #post-body -->
                 </div><!-- #poststuff -->
 
@@ -39,14 +40,14 @@ class SpiderSEOAdminPageFramework_View__PageRenderer extends SpiderSEOAdminPageF
             </div><!-- .spider-seo-container -->
 
             <?php
- echo $this->addAndApplyFilters($this->oFactory, $this->getFilterArrayByPrefix('content_bottom_', $this->oFactory->oProp->sClassName, $_sPageSlug, $_sTabSlug, false), ''); ?>
+echo $this->addAndApplyFilters($this->oFactory, $this->getFilterArrayByPrefix('content_bottom_', $this->oFactory->oProp->sClassName, $_sPageSlug, $_sTabSlug, false), ''); ?>
         </div><!-- .wrap -->
         <?php
- $this->addAndDoActions($this->oFactory, $this->getFilterArrayByPrefix('do_after_', $this->oFactory->oProp->sClassName, $_sPageSlug, $_sTabSlug, true), $this->oFactory);
+$this->addAndDoActions($this->oFactory, $this->getFilterArrayByPrefix('do_after_', $this->oFactory->oProp->sClassName, $_sPageSlug, $_sTabSlug, true), $this->oFactory);
     }
     private function _getNumberOfColumns()
     {
-        if (! $this->doesMetaBoxExist('side')) {
+        if (!$this->doesMetaBoxExist('side')) {
             return 1;
         }
         $_iColumns = $this->getNumberOfScreenColumns();
@@ -79,7 +80,7 @@ class SpiderSEOAdminPageFramework_View__PageRenderer extends SpiderSEOAdminPageF
     }
     private function _getFormOutput($sPageSlug)
     {
-        if (! $this->oFactory->oProp->bEnableForm) {
+        if (!$this->oFactory->oProp->bEnableForm) {
             return '';
         }
         return $this->oFactory->oForm->get();
@@ -91,18 +92,18 @@ class SpiderSEOAdminPageFramework_View__PageRenderer extends SpiderSEOAdminPageF
         $_oPageMetaBoxRenderer->render('normal');
         $_oPageMetaBoxRenderer->render('advanced');
     }
-    private function _printFormOpeningTag($fEnableForm=true)
+    private function _printFormOpeningTag($fEnableForm = true)
     {
-        if (! $fEnableForm) {
+        if (!$fEnableForm) {
             return;
         }
-        echo "<form " . $this->getAttributes(array( 'method' => 'post', 'enctype' => $this->oFactory->oProp->sFormEncType, 'id' => 'spider-seo-form', 'action' => wp_unslash(remove_query_arg('settings-updated', $this->oFactory->oProp->sTargetFormPage)), )) . " >" . PHP_EOL;
+        echo "<form " . $this->getAttributes(array('method' => 'post', 'enctype' => $this->oFactory->oProp->sFormEncType, 'id' => 'spider-seo-form', 'action' => wp_unslash(remove_query_arg('settings-updated', $this->oFactory->oProp->sTargetFormPage)))) . " >" . PHP_EOL;
         echo "<input type='hidden' name='admin_page_framework_start' value='1' />" . PHP_EOL;
         settings_fields($this->oFactory->oProp->sOptionKey);
     }
-    private function _printFormClosingTag($sPageSlug, $sTabSlug, $fEnableForm=true)
+    private function _printFormClosingTag($sPageSlug, $sTabSlug, $fEnableForm = true)
     {
-        if (! $fEnableForm) {
+        if (!$fEnableForm) {
             return;
         }
         $_sNonce = wp_create_nonce('form_' . md5($this->oFactory->oProp->sClassName . get_current_user_id()));

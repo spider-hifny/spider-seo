@@ -16,12 +16,13 @@ class SpiderSEOAdminPageFramework_Widget_Factory extends WP_Widget {
     }
     public function widget($aArguments, $aFormData)
     {
-        echo $aArguments[ 'before_widget' ];
+        echo esc_html($aArguments[ 'before_widget' ]);
+
         $this->oCaller->oUtil->addAndDoActions($this->oCaller, 'do_' . $this->oCaller->oProp->sClassName, $this->oCaller);
         $_sContent = $this->oCaller->oUtil->addAndApplyFilters($this->oCaller, "content_{$this->oCaller->oProp->sClassName}", $this->oCaller->content('', $aArguments, $aFormData), $aArguments, $aFormData);
-        echo $this->_getTitle($aArguments, $aFormData);
-        echo $_sContent;
-        echo $aArguments[ 'after_widget' ];
+        echo esc_html($this->_getTitle($aArguments, $aFormData));
+        echo esc_html($_sContent);
+        echo esc_html($aArguments[ 'after_widget' ]);
     }
     private function _getTitle(array $aArguments, array $aFormData)
     {
