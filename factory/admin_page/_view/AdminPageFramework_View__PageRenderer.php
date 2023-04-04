@@ -19,7 +19,7 @@ class SpiderSEOAdminPageFramework_View__PageRenderer extends SpiderSEOAdminPageF
         $this->addAndDoActions($this->oFactory, $this->getFilterArrayByPrefix('do_before_', $this->oFactory->oProp->sClassName, $_sPageSlug, $_sTabSlug, true), $this->oFactory);?>
         <div class="spider-header">
             <a href="//spiderseo.co">
-                <img src="<?=plugins_url('spider-seo/assets/image/colored-logo.png',__FILE__)?>" class="logo">
+                <img src="<?php echo plugins_url('spider-seo/assets/image/colored-logo.png')?>" class="logo">
             </a>
         </div>
         <div class="<?php echo esc_attr($this->oFactory->oProp->sWrapperClassAttribute); ?>">

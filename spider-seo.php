@@ -274,11 +274,7 @@ class SpiderSEO extends SpiderSEOAdminPageFramework {
 						?"":"disabled";
 		?>
 		<button class="spider-seo-sync" <?=$disableSync?> > sync </button>
-		<div class="sync-loader">
-			<img src="<?=plugins_url( 'assets/image/cloud-loader.gif', __FILE__ )?>"/>
-		</div>
 		
-
 		<?php   
 
 	}
